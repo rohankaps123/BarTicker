@@ -9,5 +9,7 @@ BarTicker.factory('MenuService',function($firebaseObject){
  var itemTemplate = {
    //Create template for itemData
  }
+
+
   return{}
 });
