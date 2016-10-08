@@ -3,10 +3,13 @@
 /* Bars page */
 i.icon.ion-arrow-graph-up-right,
 i.icon.ion-arrow-graph-down-right,
-i.icon.ion-chevron-right,
-i.icon.ion-social-usd
+i.icon.ion-chevron-right
 {
     font-size: 1.2em;
+}
+
+i.icon.ion-social-usd{
+    font-size: 1em;
 }
 
 i.icon.ion-arrow-graph-up-right, .red{
@@ -32,13 +35,11 @@ i.icon.ion-chevron-right{
 }
 
 .percent-change{
-    font-size: .7em;
+    font-size: .85em;
+    float: right;
+    margin-right: 5px;
 }
 
 .black{
    color: black; 
-}
-
-.item-cost{
-    border-bottom: 1px solid lightgray;
 }

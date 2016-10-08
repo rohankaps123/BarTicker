@@ -1,17 +1,31 @@
 <ion-view  view-title="Drinks @{{bar.name}}">
     <ion-content>
     <div class="list card" ng-repeat="item in bar.menu">
-        <div class="item item-icon-right item-icon-right">
+        <div class="item item-icon-right">
             <span class="drink-name">
                 {{item.drink}}
             </span>
             
-                <div class="item-cost"><i class="icon ion-social-usd">{{item.cost}}</i></div>
-                <div ng-if="item.change == 0 " class="percent-change black">({{item.change | percentage:2}})</div>
-                <div ng-if="item.change < 0 " class="percent-change green">({{item.change | percentage:2}})</div>
-                <div ng-if="item.change > 0 " class="percent-change red">({{item.change | percentage:2}})</div>
-            
-            
+            <div class="item-cost">
+                <i class="icon ion-social-usd">{{item.cost}}</i>
+            </div>
+        </div>
+        
+        
+
+        <div ng-if="item.change == 0 " class="percent-change black">
+            <i class="icon ion-thumbsup"></i>
+            <span>({{item.change | percentage:2}})</span>
+        </div>
+
+        <div ng-if="item.change < 0 " class="percent-change green">
+            <i class="icon ion-thumbsup"></i>
+            <span>({{item.change | percentage:2}})</span>
+        </div>
+
+        <div ng-if="item.change > 0 " class="percent-change red">
+            <i class="icon ion-thumbsdown"></i>
+            <span>({{item.change | percentage:2}})</span>
         </div>
         
     </div>
