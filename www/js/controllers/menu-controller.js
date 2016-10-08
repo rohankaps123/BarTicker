@@ -1,16 +1,26 @@
 BarTicker.controller('barMenuController', function($scope,$stateParams,$location,BarService,PosService,MenuService) {
+     var bar;
+    var barId = $stateParams.id;
 
-var x = getIncreasingRate(5,10,getCurrentPrice(5,10,100,0.50,1,2));
-console.log("Increasing Rate: " + x)
+	console.log(barId);
 
-var getIncreasingRate=function(orderRate,peopleRate,currentPrice){
-  return (orderRate+peopleRate)*currentPrice*(1-currentPrice)
-};
-var getDecreasingRate = function(orderRate,peopleRate,currentPrice){
-  return (orderRate+peopleRate)*currentPrice*(1-currentPrice)
-};
+    var allBars = [
+        {id:1,name:"Rafters", direction:"down",menu:[{drink:"Well drink", cost:4, change:-0.05},{drink:"Draft Beer", cost:5,change:-0.02},{drink:"House Wine", cost:5,change:0}]},
+        {id:2,name:"McMurphy's", direction:"up", menu:[{drink:"Well drink", cost:7,change:0.07},{drink:"Draft Beer", cost:7,change:0.10},{drink:"House Wine", cost:8,change:0.20}]},
+        {id:3,name:"Monkey Bar", direction:"down", menu:[{drink:"Well drink", cost:5,change:0},{drink:"Draft Beer", cost:6,change:0.01},{drink:"House Wine", cost:6,change:0.02}]}
+    ];
 
-var getCurrentPrice = function(orderRate,peopleRate,maxPrice,minPrice,startingPrice,time){
-  return minPrice + (maxPrice-minPrice)/(1+(((maxPrice-minPrice)/startingPrice)-1)*expfun(-(orderRate + peopleRate)*time))
-};
+
+
+    for(var i=0; i < allBars.length; i++){
+        if(allBars[i].id == barId)
+            bar=allBars[i];
+    }
+    $scope.bar = bar;
 });
+
+BarTicker.filter('percentage', ['$filter', function ($filter) {
+  return function (input, decimals) {
+    return $filter('number')(input * 100, decimals) + '%';
+  };
+}]);
