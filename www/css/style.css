@@ -1,1 +1,40 @@
 /* Empty. Add your own CSS if you like */
+
+/* Bars page */
+i.icon.ion-arrow-graph-up-right,
+i.icon.ion-arrow-graph-down-right,
+i.icon.ion-chevron-right,
+i.icon.ion-social-usd
+{
+    font-size: 1.2em;
+}
+
+i.icon.ion-arrow-graph-up-right, .red{
+    color:red;
+}
+
+i.icon.ion-arrow-graph-down-right, i.icon.ion-social-usd, .green{
+    color:green;
+}
+
+i.icon.ion-chevron-right{
+    color:lightgray;
+}
+
+.bar-name{
+    letter-spacing: .8px;
+    font-size: 1.2em;
+}
+
+.drink-name{
+    letter-spacing: .7px;
+    font-size: 1.1em;
+}
+
+.percent-change{
+    font-size: .7em;
+}
+
+.black{
+   color: black; 
+}
