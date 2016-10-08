@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('bar_ticker.controllers', []);
 angular.module('bar_ticker', ['ionic', 'bar_ticker.controllers', 'underscore'])
-  .run(function($ionicPlatform, $rootScope) {
+  .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -30,6 +30,16 @@ angular.module('bar_ticker', ['ionic', 'bar_ticker.controllers', 'underscore'])
     url: '/barlist',
     templateUrl: 'templates/barlist.html',
     controller: 'barListController'
+  })
+
+  .state('barlist.barmenu',{
+    url:'/:barId',
+    views:{
+      'barmenu@barlist':{
+        templateUrl:'barmenu.html',
+        controller:'barMenuController'
+      }
+    }
   })
 
   // if none of the above states are matched, use this as the fallback

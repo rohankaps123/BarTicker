@@ -1,5 +1,5 @@
 {
-  "name": "barticker",
+  "name": "bar_ticker",
   "version": "1.1.1",
   "description": "BarTicker: An Ionic project",
   "dependencies": {
@@ -22,5 +22,8 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios",
+    "android"
+  ]
 }
