@@ -30,11 +30,25 @@
     <script src="cordova.js"></script>
     <!-- Adding underscore support -->
     <script src="lib/underscore/underscore-min.js"></script>
+
+
     <script src="lib/angular-underscore-module/angular-underscore-module.js"></script>
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <!--import controllers-->
+    <script src="js/services/barservice.js"></script>
+    <script src="js/services/menuservice.js"></script>
+    <script src="js/services/posservice.js"></script>
+    <script src="js/controllers/menu-controller.js"></script>
+    <script src="js/controllers/barlist-controller.js"></script>
+    <script src="js/controllers/pos-controller.js"></script>
+    
   </head>
-  <body ng-app="bar_ticker">
+  <body ng-app="BarTicker">
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
     <ion-nav-view></ion-nav-view>
   </body>
 </html>

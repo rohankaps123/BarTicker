@@ -1,5 +1,5 @@
 {
-  "name": "bar_ticker",
+  "name": "BarTicker",
   "version": "1.1.1",
   "description": "BarTicker: An Ionic project",
   "dependencies": {

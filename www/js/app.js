@@ -3,8 +3,8 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('bar_ticker.controllers', []);
-angular.module('bar_ticker', ['ionic', 'bar_ticker.controllers', 'underscore'])
+
+var BarTicker = angular.module('BarTicker', ['ionic',  'underscore'])
   .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
       if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -26,20 +26,23 @@ angular.module('bar_ticker', ['ionic', 'bar_ticker.controllers', 'underscore'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+
     .state('barlist', {
     url: '/barlist',
     templateUrl: 'templates/barlist.html',
     controller: 'barListController'
   })
 
-  .state('barlist.barmenu',{
-    url:'/:barId',
-    views:{
-      'barmenu@barlist':{
-        templateUrl:'barmenu.html',
-        controller:'barMenuController'
-      }
-    }
+  .state('barmenu',{
+    url: "/barmenu/:id",
+    templateUrl: "templates/barmenu.html",
+    controller: "barMenuController"
+  })
+
+  .state('pos',{
+    url: "/pos/:id",
+    templateUrl: "templates/pos.html",
+    controller: "posController"
   })
 
   // if none of the above states are matched, use this as the fallback
