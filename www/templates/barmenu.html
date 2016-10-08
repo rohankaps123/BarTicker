@@ -4,11 +4,14 @@
         <div class="item item-icon-right item-icon-right">
             <span class="drink-name">
                 {{item.drink}}
-                <span ng-if="item.change == 0 " class="percent-change black">({{item.change | percentage:2}})</span>
-                <span ng-if="item.change < 0 " class="percent-change green">({{item.change | percentage:2}})</span>
-                <span ng-if="item.change > 0 " class="percent-change red">({{item.change | percentage:2}})</span>
             </span>
-            <i class="icon ion-social-usd">{{item.cost}}</i>
+            
+                <div class="item-cost"><i class="icon ion-social-usd">{{item.cost}}</i></div>
+                <div ng-if="item.change == 0 " class="percent-change black">({{item.change | percentage:2}})</div>
+                <div ng-if="item.change < 0 " class="percent-change green">({{item.change | percentage:2}})</div>
+                <div ng-if="item.change > 0 " class="percent-change red">({{item.change | percentage:2}})</div>
+            
+            
         </div>
         
     </div>

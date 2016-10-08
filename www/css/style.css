@@ -13,7 +13,7 @@ i.icon.ion-arrow-graph-up-right, .red{
     color:red;
 }
 
-i.icon.ion-arrow-graph-down-right, i.icon.ion-social-usd, .green{
+i.icon.ion-arrow-graph-down-right, .green/*, i.icon.ion-social-usd*/{
     color:green;
 }
 
@@ -37,4 +37,8 @@ i.icon.ion-chevron-right{
 
 .black{
    color: black; 
+}
+
+.item-cost{
+    border-bottom: 1px solid lightgray;
 }
