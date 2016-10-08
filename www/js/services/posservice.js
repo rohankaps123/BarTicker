@@ -5,7 +5,6 @@ BarTicker.factory('PosService',function($firebaseObject){
 
 
  var posTemplate = {
-
  }
   return{}
 });
