@@ -25,9 +25,9 @@ BarTicker.controller('barListController', function($scope, $window, $state,$fire
       var noSold = MenuService.$getRecord(MenuService.$keyAt(i)).noSold;
       var oldNoOfPeople = BarService.$getRecord(MenuService.$getRecord(MenuService.$keyAt(i)).barId).oldNoOfPeople;
       var noOfPeople = BarService.$getRecord(MenuService.$getRecord(MenuService.$keyAt(i)).barId).noOfPeople;
-      var timeChange = 0.0083;
-      var pOCPTC = (((noSold-oldNoSold)/(oldNoSold+1))*100)/timeChange;
-      var pPCPTC = (((noOfPeople-oldNoOfPeople)/(oldNoOfPeople+1))*100)/timeChange;
+      var timeChange = 0.083;
+      var pOCPTC = (((noSold-oldNoSold)/(oldNoSold))*100)/timeChange;
+      var pPCPTC = (((noOfPeople-oldNoOfPeople)/(oldNoOfPeople))*100)/timeChange;
       var hO = 0.8;
       var hP = 0.2;
 
@@ -38,17 +38,16 @@ BarTicker.controller('barListController', function($scope, $window, $state,$fire
       BarService.$save(BarService.$getRecord(MenuService.$getRecord(MenuService.$keyAt(i)).barId));
 
 
-      MenuService[i].oldPrice = currentPrice;
-      MenuService.$save(i);
+      //MenuService.$save(i);
 
       MenuService[i].rateChange = ((newPrice-currentPrice)/currentPrice)*100;
-      MenuService.$save(i);
+      //MenuService.$save(i);
 
       MenuService[i].currentPrice = newPrice;
-      MenuService.$save(i);
+      //MenuService.$save(i);
 
       MenuService[i].oldNoSold = Math.abs(noSold-oldNoSold);
-      MenuService.$save(i);
+      //MenuService.$save(i);
 
       MenuService[i].noSold = 0;
       MenuService.$save(i);
@@ -71,7 +70,6 @@ BarTicker.controller('barListController', function($scope, $window, $state,$fire
     }
     **/
 
-
   }, 6000);
 
 
@@ -84,15 +82,16 @@ BarTicker.controller('barListController', function($scope, $window, $state,$fire
     var peopleNewPrice = (100 + (pPCPTC * timeChange)) * 0.01 * prevPrice;
     var currentPrice = hO * orderNewPrice + hP * peopleNewPrice;
     if (currentPrice < minPrice || currentPrice == NaN) {
-      return minPrice.toPrecision(2);
+      return minPrice;
     } else {
       if (currentPrice > maxPrice) {
-        return maxPrice.toPrecision(2);
+        return maxPrice;
       } else {
-        return currentPrice.toPrecision(2);
+        return currentPrice;
       }
     }
   };
+
 
 
 
