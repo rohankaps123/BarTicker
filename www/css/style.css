@@ -1,9 +1,9 @@
 /* Empty. Add your own CSS if you like */
 
-/* Bars page */
 i.icon.ion-arrow-graph-up-right,
 i.icon.ion-arrow-graph-down-right,
-i.icon.ion-chevron-right
+i.icon.ion-chevron-right,
+i.icon.ion-plus
 {
     font-size: 1.2em;
 }
@@ -42,4 +42,12 @@ i.icon.ion-chevron-right{
 
 .black{
    color: black; 
+}
+
+.header{
+    text-align: center;
+}
+
+.left{
+    float: left;
 }
