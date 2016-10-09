@@ -1,16 +1,14 @@
 <ion-view  view-title="Bars Near You">
     <ion-content>
-    <div class="list card" ng-repeat="bar in allBars">
+    <div class="list card" ng-repeat="bar in bars">
 
-      <a href="#/barmenu/{{bar.id}}" class="item item-icon-left item-icon-right">
-        <i ng-if="bar.direction == 'up' " class="icon ion-arrow-graph-up-right"></i>
-        <i ng-if="bar.direction == 'down' " class="icon ion-arrow-graph-down-right"></i>
+      <a href="" class="item item-icon-left item-icon-right" ng-click="goToBarPage(bar)">
+        <i ng-if="bar.averageRate>=0" class="icon ion-arrow-graph-up-right"></i>
+        <i ng-if="bar.averageRate<0 " class="icon ion-arrow-graph-down-right"></i>
         <span class="bar-name">{{bar.name}}</span>
+
         <i class="icon ion-chevron-right"></i>
-        
       </a>
     </div>
     </ion-content>
 </ion-view>
-
-  

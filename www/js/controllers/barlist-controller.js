@@ -1,7 +1,25 @@
-BarTicker.controller('barListController', function($scope,$window,$state,$location,$interval,BarService,PosService,MenuService) {
+BarTicker.controller('barListController', function($scope,$window,$state,$location,$interval,BarService,MenuService) {
+  $scope.bars = BarService;
+
+  $scope.addBar = function(name,items,capacity,noOfPeople,averageRate){
+    $scope.bars.$add({
+    name:items,
+    items:items,
+    capacity:capacity,
+    noOfPeople:noOfPeople,
+    averageRate:averageRate
+  });
+};
+
+$scope.goToBarPage = function(bar){
+    $location.path('/barmenu/'+ $scope.bars.$keyAt(bar));
+};
 
 
-  var getIncreasingRate=function(orderRate,peopleRate,currentPrice,maxPrice){
+
+
+
+/**  var getIncreasingRate=function(orderRate,peopleRate,currentPrice,maxPrice){
     return (orderRate+0.5*peopleRate)*0.02*currentPrice*(maxPrice-currentPrice)/maxPrice
   };
   var getDecreasingRate = function(orderRate,peopleRate,currentPrice){
@@ -15,12 +33,7 @@ BarTicker.controller('barListController', function($scope,$window,$state,$locati
   console.log("Current Price: " + currentPrice)
   var x = getIncreasingRate(5,10,currentPrice,100);
   console.log("Increasing Rate: " + x)
+**/
 
-
-    $scope.allBars = [
-        {id:1,name:"Rafters", direction:"down",menu:[{drink:"Well drink", cost:4},{drink:"Draft Beer", cost:5},{drink:"House Wine", cost:5}]},
-        {id:2,name:"McMurphy's", direction:"up", menu:[{drink:"Well drink", cost:7},{drink:"Draft Beer", cost:7},{drink:"House Wine", cost:8}]},
-        {id:3,name:"Monkey Bar", direction:"down", menu:[{drink:"Well drink", cost:5},{drink:"Draft Beer", cost:6},{drink:"House Wine", cost:6}]}
-    ];
 
 });
