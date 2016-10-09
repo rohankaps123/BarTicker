@@ -10,12 +10,22 @@ BarTicker.controller('posController', function($scope,$stateParams,$state,$locat
     $scope.getSelectedBar = function(selectedBar) {
         
         $scope.selectedBarValue = selectedBar;
-      for(var i=0; i< $scope.allBars.length; i++)
-      {
-        if(selectedBar == $scope.allBars[i].id)
-            $scope.bar = $scope.allBars[i];
-      }
-  };
+          for(var i=0; i< $scope.allBars.length; i++)
+          {
+            if(selectedBar == $scope.allBars[i].id)
+                $scope.bar = $scope.allBars[i];
+          }
+    };
+    
+    $scope.getSelectedDrink = function(selectedDrink) {
+        
+        //$scope.selectedBarValue = selectedBar;
+          for(var i=0; i< $scope.bar.menu.length; i++)
+          {
+            if(selectedDrink == $scope.bar.menu[i].drink)
+                $scope.drink = $scope.bar.menu[i].drink;
+          }
+    };
     
     
     

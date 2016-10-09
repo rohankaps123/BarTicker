@@ -24,19 +24,36 @@
                   
                 <span class="input-label"># customers</span>
                 <i class="icon ion-minus-round" ng-click="subtract()"></i>
-                <input type="text" maxlength="5" enabled="false" value="5">
+                <input class="center" type="text" maxlength="5" disabled="disabled" value="5">
                 <i class="icon ion-plus-round" ng-click="add()"></i>
-              </label>
-              <button ion-button>New transaction</button>
-
-                          
-              
+              </label>                      
               
           </div>
          <!-- <div class="item item-divider">
             I'm a Footer in a Card!
           </div>-->
       </div>
+        
+        <div ng-if="selectedBarValue >= 0" class="card">
+        <div class="item item-divider header">
+            {{bar.name}}
+          </div>
+          <div class="item item-text-wrap">
+                          
+              <div class="list">
+              <label class="item item-input item-select">
+                <div class="input-label">
+                  Choose a drink...
+                </div>
+                <select ng-model="selectedDrink" ng-change="getSelectedDrink(selectedDrink)" ng-init="''">
+                  <option ng-repeat="item in bar.menu" value="{{item.drink}}">{{item.drink}}</option>
+                </select>
+              </label>
+            </div>
+              <button ion-button>New transaction</button>
+          </div>
+      </div>
+        
 
     </div>
   </ion-content>
