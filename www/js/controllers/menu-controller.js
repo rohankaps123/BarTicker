@@ -1,22 +1,24 @@
-BarTicker.controller('barMenuController', function($scope,$stateParams,$location,BarService,PosService,MenuService) {
-     var bar;
-    var barId = $stateParams.id;
+BarTicker.controller('barMenuController', function($scope,$stateParams,$location, $firebaseArray,BarService,MenuService) {
+  $scope.itemsAll = MenuService;
+  $scope.barId = $stateParams.id;
+  $scope.items = $firebaseArray(MenuService.$ref().orderByChild("barId").equalTo($scope.barId));
+  $scope.bars = BarService;
 
-	console.log(barId);
+  $scope.addItem = function(name,barId,noSold,incState,rateChange,currentPrice,minPrice,maxPrice){
+    $scope.items.$add({
+    name:name,
+    barId:barId,
+    noSold:noSold,
+    incState:incState,
+    rateChange:rateChange,
+    currentPrice:currentPrice,
+    minPrice:minPrice,
+    maxPrice:maxPrice
+  });
+}
 
-    var allBars = [
-        {id:1,name:"Rafters", direction:"down",menu:[{drink:"Well drink", cost:4, change:-0.05},{drink:"Draft Beer", cost:5,change:-0.02},{drink:"House Wine", cost:5,change:0}]},
-        {id:2,name:"McMurphy's", direction:"up", menu:[{drink:"Well drink", cost:7,change:0.07},{drink:"Draft Beer", cost:7,change:0.10},{drink:"House Wine", cost:8,change:0.20}]},
-        {id:3,name:"Monkey Bar", direction:"down", menu:[{drink:"Well drink", cost:5,change:0},{drink:"Draft Beer", cost:6,change:0.01},{drink:"House Wine", cost:6,change:0.02}]}
-    ];
-
-
-
-    for(var i=0; i < allBars.length; i++){
-        if(allBars[i].id == barId)
-            bar=allBars[i];
-    }
-    $scope.bar = bar;
+  //  $scope.addItem("Long Island Ice Tea",$scope.barId,0,0,0,0,8,12);
+    $scope.bar = $scope.bars.$getRecord($scope.barId);
 });
 
 BarTicker.filter('percentage', ['$filter', function ($filter) {
