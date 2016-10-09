@@ -3,8 +3,8 @@
     <div class="list card" ng-repeat="bar in bars">
 
       <a href="" class="item item-icon-left item-icon-right" ng-click="goToBarPage(bar)">
-        <i ng-if="bar.averageRate>=0" class="icon ion-arrow-graph-up-right"></i>
-        <i ng-if="bar.averageRate<0 " class="icon ion-arrow-graph-down-right"></i>
+        <i ng-if="bar.averageRate>0" class="icon ion-arrow-graph-up-right"></i>
+        <i ng-if="bar.averageRate<=0 " class="icon ion-arrow-graph-down-right"></i>
         <span class="bar-name">{{bar.name}}</span>
 
         <i class="icon ion-chevron-right"></i>

@@ -1,4 +1,4 @@
-BarTicker.controller('barListController', function($scope, $window, $state, $location, $interval, BarService, MenuService) {
+BarTicker.controller('barListController', function($scope, $window, $state,$firebaseArray, $location, $interval, BarService, MenuService) {
   $scope.bars = BarService;
   $scope.items = MenuService;
 
@@ -32,10 +32,17 @@ BarTicker.controller('barListController', function($scope, $window, $state, $loc
       var hP = 0.2;
 
       var newPrice = getCurrentPrice(currentPrice,pOCPTC,pPCPTC,hO,hP,minPrice,maxPrice,timeChange);
-      console.log(newPrice);
+      //console.log(newPrice);
 
       BarService[BarService.$indexFor(MenuService.$getRecord(MenuService.$keyAt(i)).barId)].oldNoOfPeople = noOfPeople;
       BarService.$save(BarService.$getRecord(MenuService.$getRecord(MenuService.$keyAt(i)).barId));
+
+
+      MenuService[i].oldPrice = currentPrice;
+      MenuService.$save(i);
+
+      MenuService[i].rateChange = ((newPrice-currentPrice)/currentPrice)*100;
+      MenuService.$save(i);
 
       MenuService[i].currentPrice = newPrice;
       MenuService.$save(i);
@@ -45,8 +52,27 @@ BarTicker.controller('barListController', function($scope, $window, $state, $loc
 
       MenuService[i].noSold = 0;
       MenuService.$save(i);
+    };
+
+   /**for(var j=0; j<BarService.length;j++){
+      $scope.itemsss =  $firebaseArray(MenuService.$ref().orderByChild("barId").equalTo(BarService[j].$id));
+      console.log($scope.itemsss);
+    };
+    if(MenuService[i].rateChange > 0){
+      positives++;
     }
-  }, 30000);
+
+    var positives =0;
+    for(var i=0; i<MenuService.length;i++){
+      if(positives>MenuService.length/2){
+        BarService[BarService.$indexFor(MenuService.$getRecord(MenuService.$keyAt(i)).barId)].oldNoOfPeople = noOfPeople;
+        BarService.$save(BarService.$getRecord(MenuService.$getRecord(MenuService.$keyAt(i)).barId));
+      }
+    }
+    **/
+
+
+  }, 6000);
 
 
   //pOCPTC = percentOrderChangePerTimeChange

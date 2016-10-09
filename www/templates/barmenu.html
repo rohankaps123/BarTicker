@@ -9,6 +9,11 @@
             <i class="icon ion-social-usd">{{item.currentPrice}}</i>
           </span>
 
+          <div ng-if="item.incState == 0 " class="percent-change green">
+            <div><i class="icon ion-arrow-down-b"></i></div>
+            <div>({{item.rateChange | percentage:2}})</div>
+          </div>
+
           <div ng-if="item.incState < 0 " class="percent-change green">
             <div><i class="icon ion-arrow-down-b"></i></div>
             <div>({{item.rateChange | percentage:2}})</div>
