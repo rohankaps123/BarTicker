@@ -40,7 +40,7 @@ var BarTicker = angular.module('BarTicker', ['ionic',  'underscore','firebase'])
   })
 
   .state('pos',{
-    url: "/pos/:id",
+    url: "/pos",
     templateUrl: "templates/pos.html",
     controller: "posController"
   })

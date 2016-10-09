@@ -1,5 +1,43 @@
-<ion-view  view-title="Welcome to barTicker">
+<ion-view  view-title="Welcome to BarTicker">
   <ion-content>
-      Purchase
+    <div class="list">
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Choose a bar...
+        </div>
+        <select ng-model="selectedBar" ng-change="getSelectedBar(selectedBar)" ng-init="''">
+          <option ng-repeat="bar in allBars" value="{{bar.id}}">{{bar.name}}</option>
+        </select>
+      </label>
+        
+      <div ng-if="selectedBarValue >= 0" class="card">
+        <div class="item item-divider header">
+            {{bar.name}}
+          </div>
+          <div class="item item-text-wrap">
+            <!--<span class="label">Price per drink:</span>
+            <span class="value">Price</span><br/><br/>
+            <span class="label">Total revenue:</span>
+            <span class="value">Revenue</span>-->
+              <label class="item item-input">
+                  
+                <span class="input-label"># customers</span>
+                <i class="icon ion-minus-round" ng-click="subtract()"></i>
+                <input type="text" maxlength="5" enabled="false" value="5">
+                <i class="icon ion-plus-round" ng-click="add()"></i>
+              </label>
+              <button ion-button>New transaction</button>
+
+                          
+              
+              
+          </div>
+         <!-- <div class="item item-divider">
+            I'm a Footer in a Card!
+          </div>-->
+      </div>
+
+    </div>
   </ion-content>
 </ion-view>
