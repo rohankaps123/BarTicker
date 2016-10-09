@@ -1,59 +1,52 @@
 <ion-view  view-title="Welcome to BarTicker">
   <ion-content>
     <div class="list">
-
       <label class="item item-input item-select">
         <div class="input-label">
           Choose a bar...
         </div>
-        <select ng-model="selectedBar" ng-change="getSelectedBar(selectedBar)" ng-init="''">
-          <option ng-repeat="bar in allBars" value="{{bar.id}}">{{bar.name}}</option>
+        <select ng-model="selectedBar" ng-options="bar.name for bar in allBars" ng-change="barSelected(selectedBar.$id)">
         </select>
       </label>
-        
-      <div ng-if="selectedBarValue >= 0" class="card">
+
+      <div ng-if="busIdSet == true" class="card">
         <div class="item item-divider header">
-            {{bar.name}}
+            {{selectedBar.name}}
           </div>
           <div class="item item-text-wrap">
             <!--<span class="label">Price per drink:</span>
             <span class="value">Price</span><br/><br/>
             <span class="label">Total revenue:</span>
             <span class="value">Revenue</span>-->
-              <label class="item item-input">
-                  
+              <label class="item item-input"></label>
+
                 <span class="input-label"># customers</span>
-                <i class="icon ion-minus-round" ng-click="subtract()"></i>
-                <input class="center" type="text" maxlength="5" disabled="disabled" value="5">
-                <i class="icon ion-plus-round" ng-click="add()"></i>
-              </label>                      
-              
+                <button class=" button button-icon ion-minus-round" ng-click="subtractCustomers(selectedBar.$id)"></button>
+                <input class="center" type="text" maxlength="5" disabled="disabled" value="{{selectedBar.noOfPeople}}">
+                <button class=" button button-icon ion-plus-round" ng-click="addCustomers(selectedBar.$id)"></button>
+
           </div>
          <!-- <div class="item item-divider">
             I'm a Footer in a Card!
           </div>-->
       </div>
-        
-        <div ng-if="selectedBarValue >= 0" class="card">
-        <div class="item item-divider header">
-            {{bar.name}}
-          </div>
+
+        <div ng-if="busIdSet == true" class="card">
           <div class="item item-text-wrap">
-                          
+
               <div class="list">
               <label class="item item-input item-select">
                 <div class="input-label">
                   Choose a drink...
                 </div>
-                <select ng-model="selectedDrink" ng-change="getSelectedDrink(selectedDrink)" ng-init="''">
-                  <option ng-repeat="item in bar.menu" value="{{item.drink}}">{{item.drink}}</option>
+                <select ng-model="selectedItem" ng-options="item.name for item in items" ng-change="itemSelected(selectedItem.$id)">
                 </select>
               </label>
             </div>
-              <button ion-button>New transaction</button>
+              <button ng-if="itemIdSet == true" class="button button-dark" ng-click="addTransaction(selectedItem.$id)">New transaction</button>
           </div>
       </div>
-        
+
 
     </div>
   </ion-content>

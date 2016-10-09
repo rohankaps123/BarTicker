@@ -1,32 +1,38 @@
-BarTicker.controller('posController', function($scope,$stateParams,$state,$location,BarService,MenuService) {
-    $scope.allBars = [
-        {id:1,name:"Rafters", direction:"down",menu:[{drink:"Well drink", cost:4},{drink:"Draft Beer", cost:5},{drink:"House Wine", cost:5}]},
-        {id:2,name:"McMurphy's", direction:"up", menu:[{drink:"Well drink", cost:7},{drink:"Draft Beer", cost:7},{drink:"House Wine", cost:8}]},
-        {id:3,name:"Monkey Bar", direction:"down", menu:[{drink:"Well drink", cost:5},{drink:"Draft Beer", cost:6},{drink:"House Wine", cost:6}]}
-    ];
+BarTicker.controller('posController', function($scope,$stateParams,$state,$location,$firebaseArray,BarService,MenuService) {
+    $scope.itemsAll = MenuService;
+    $scope.allBars = BarService;
+  //  $scope.items = $firebaseArray(MenuService.$ref().orderByChild("barId").equalTo($scope.barId));
 
-    $scope.selectedBarValue = -1;
+    $scope.selectedBar={};
+    $scope.busIdSet = false;
+    $scope.selectedItem={};
+    $scope.itemIdSet =false;
 
-    $scope.getSelectedBar = function(selectedBar) {
-
-        $scope.selectedBarValue = selectedBar;
-
-          for(var i=0; i< $scope.allBars.length; i++)
-          {
-            if(selectedBar == $scope.allBars[i].id)
-                $scope.bar = $scope.allBars[i];
-          }
+    $scope.barSelected = function(barId) {
+      $scope.selectedBar = BarService.$getRecord(barId);
+      $scope.items = $firebaseArray(MenuService.$ref().orderByChild("barId").equalTo(barId));
+      $scope.busIdSet = true;
+      $scope.itemIdSet =false;
     };
-    
-    $scope.getSelectedDrink = function(selectedDrink) {
-        
-        //$scope.selectedBarValue = selectedBar;
-          for(var i=0; i< $scope.bar.menu.length; i++)
-          {
-            if(selectedDrink == $scope.bar.menu[i].drink)
-                $scope.drink = $scope.bar.menu[i].drink;
-          }
+
+    $scope.itemSelected = function(itemId) {
+      $scope.selectedItem = MenuService.$getRecord(itemId);
+      $scope.itemIdSet = true;
     };
-    
-    
+
+    $scope.addTransaction = function(itemId){
+      MenuService[MenuService.$indexFor(itemId)].noSold++;
+      MenuService.$save(MenuService.$getRecord(itemId));
+    };
+
+    $scope.subtractCustomers = function(barId){
+      BarService[BarService.$indexFor(barId)].noOfPeople--;
+      BarService.$save(BarService.$getRecord(barId));
+    };
+
+    $scope.addCustomers = function(barId){
+      BarService[BarService.$indexFor(barId)].noOfPeople++;
+      BarService.$save(BarService.$getRecord(barId));
+    };
+
 });
